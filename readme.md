@@ -31,3 +31,5 @@ scala-cli setup-ide .
 scala-cli run .
 
 ```
+
+## Current problems
