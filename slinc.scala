@@ -39,12 +39,12 @@ val superJ = FSet.instance[SuperJLib]
   juliaLib.jl_init()
   
   Scope.confined {
-    println("Code supplied to Julia directly")
+    println("Code supplied to Julia directly")    
     val t = Ptr.copy("print(sqrt(2.0))")
     juliaLib.jl_eval_string(t);
   }
   
-  println("Now let's call a pre-compiled library")
+  println("\n Now let's call a pre-compiled library")
   println(superJ.increment32(1))
   juliaLib.jl_atexit_hook(0)
 

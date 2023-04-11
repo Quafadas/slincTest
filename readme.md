@@ -37,3 +37,20 @@ scala-cli run .
 Needed to copy "C:\Users\partens\AppData\Local\Programs\Julia-1.8.3\lib\julia\sys.dll"
 
 To : "C:\temp\superJlibCompiled\lib\julia"
+
+```
+WARNING: Using incubator modules: jdk.incubator.foreign
+Got a quotient of 2 and a remainder of 1
+41
+18467
+WARNING: failed to initialize stack walk info
+Code supplied to Julia directly
+1.4142135623730951
+ Now let's call a pre-compiled library
+
+Please submit a bug report with steps to reproduce this fault, and any error messages that follow (in their entirety). Thanks.
+Exception: EXCEPTION_ACCESS_VIOLATION at 0x0 -- unknown function (ip: 0000000000000000)
+in expression starting at none:0
+unknown function (ip: 0000000000000000)
+Allocations: 2907 (Pool: 2896; Big: 11); GC: 0
+```
