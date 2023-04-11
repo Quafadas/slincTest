@@ -33,11 +33,18 @@ val superJ = FSet.instance[SuperJLib]
   println(myLib.rand())
 
   //val format = Ptr.copy("%i hello: %s %i")
-  // val t = Ptr.copy("print(sqrt(2.0))")
+  //
 
   // the above works, but now we would want to test Julia. 
   juliaLib.jl_init()
-  //juliaLib.jl_eval_string( 1);
+  
+  Scope.confined {
+    println("Code supplied to Julia directly")
+    val t = Ptr.copy("print(sqrt(2.0))")
+    juliaLib.jl_eval_string(t);
+  }
+  
+  println("Now let's call a pre-compiled library")
   println(superJ.increment32(1))
   juliaLib.jl_atexit_hook(0)
 

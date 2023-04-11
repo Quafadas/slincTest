@@ -33,3 +33,7 @@ scala-cli run .
 ```
 
 ## Current problems
+
+Needed to copy "C:\Users\partens\AppData\Local\Programs\Julia-1.8.3\lib\julia\sys.dll"
+
+To : "C:\temp\superJlibCompiled\lib\julia"
