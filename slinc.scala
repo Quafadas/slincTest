@@ -27,11 +27,11 @@ val jLib = FSet.instance[SuperJLib]
   println(myLib.rand())
 
   //val format = Ptr.copy("%i hello: %s %i")
-  val t = "print(sqrt(2.0))"
+  // val t = Ptr.copy("print(sqrt(2.0))")
 
   // the above works, but now we would want to test Julia. 
   jLib.jl_init()
-  //jLib.jl_eval_string( t.getBytes() );
+  // jLib.jl_eval_string( t );
   jLib.jl_atexit_hook(0)
 
 
