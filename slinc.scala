@@ -12,14 +12,14 @@ trait MyLib derives FSet:
 
 val myLib = FSet.instance[MyLib]
 
-@NeedsFile("""C:\temp\superJlibCompiled\bin\libjulia.dll""")
+@NeedsFile("""C:\temp\MyLibCompiled\bin\libjulia.dll""")
 trait JuliaLib derives FSet:
   def jl_init():Unit  
   def jl_atexit_hook(code : CInt):Unit
   def jl_eval_string(code : Ptr[CChar]):Unit
   //def increment32(num: CInt): CInt
   
-@NeedsFile("""C:\temp\superJlibCompiled\bin\superJlib.dll""")  
+@NeedsFile("""C:\temp\MyLibCompiled\bin\libinc.dll""")  
 trait SuperJLib derives FSet:
   def increment32(num: CInt): CInt
 
