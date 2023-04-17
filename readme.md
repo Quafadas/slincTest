@@ -22,6 +22,12 @@ create_library("superJlib", "superJlibCompiled";lib_name="superJlib",precompile_
  
 ```
 
+## Useful 
+
+```
+nm -D --defined-only libname.so 
+```
+
 ## Scala leg
 
 Uses scala-cli for ease, in codespaces setup via apit install. 
@@ -72,4 +78,9 @@ Pkg.add("StaticCompiler")
 using StaticTools, StaticCompiler
 ```
 
+Is suggestive that there is some content to the file we're trying to call. However, it doesn't seem to "work"... 
+```
+@Quafadas ➜ /workspaces/slincTest (master) $ nm --demangle --defined-only --dynamic /workspaces/slincTest/myJlib/libmul.so
+0000000000003ec0 T julia_mul_inplace
 
+```

@@ -14,9 +14,12 @@ using Base: RefValue
     return 0
 end
 
-# tt = (RefValue{MallocMatrix{Float64}}, RefValue{MallocMatrix{Float64}}, RefValue{MallocMatrix{Float64}})
+tt = (RefValue{MallocMatrix{Float64}}, RefValue{MallocMatrix{Float64}}, RefValue{MallocMatrix{Float64}})
 # this will let us accept pointers to MallocArrays
 mul!(C::Ref,A::Ref,B::Ref) = mul!(C[], A[], B[])
+
+#in a console, run this; 
+# compile_shlib(mul!, tt, "./", "mul_inplace", filename="libmul")
 
 ttAdd = (RefValue{Ptr{Float64}}, RefValue{Ptr{Float64}}, RefValue{Ptr{Float64}})
 @inline function add!(c :: malloc,  a:: malloc , b :: malloc )
