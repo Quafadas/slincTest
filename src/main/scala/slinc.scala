@@ -53,9 +53,9 @@ case class MalloccMatrix1(
   Scope.confined {
     val size : Long = 1
     
-    val a : Ptr[Double] = Ptr.copy[Double](1.0)
-    val b : Ptr[Double] = Ptr.copy[Double](1.0)
-    val c : Ptr[Double] = Ptr.copy[Double](0.0)
+    val a  = Ptr.copy[Double](Array(1.0))
+    val b = Ptr.copy[Double](Array(1.0))
+    val c = Ptr.copy[Double](Array(0.0))
 
     //val as = Ptr.copy[(CFloat, CFloat)]((1,1))
 
