@@ -24,9 +24,14 @@ create_library("superJlib", "superJlibCompiled";lib_name="superJlib",precompile_
 
 ## Scala leg
 
-Uses scala-cli for ease
+Uses scala-cli for ease, in codespaces setup via apit install. 
 
 ```
+curl -s --compressed "https://virtuslab.github.io/scala-cli-packages/KEY.gpg" | sudo apt-key add -
+sudo curl -s --compressed -o /etc/apt/sources.list.d/scala_cli_packages.list "https://virtuslab.github.io/scala-cli-packages/debian/scala_cli_packages.list"
+sudo apt update
+sudo apt install scala-cli
+
 scala-cli setup-ide .
 scala-cli run .
 
@@ -54,3 +59,17 @@ in expression starting at none:0
 unknown function (ip: 0000000000000000)
 Allocations: 2907 (Pool: 2896; Big: 11); GC: 0
 ```
+
+## Let's experiment with the static compiler
+Install julia 
+https://julialang.org/downloads/platform/
+
+export PATH="$PATH:/workspaces/slincTest/julia/julia-1.8.5/bin"
+
+```julia
+using Pkg
+Pkg.add("StaticCompiler")
+using StaticTools, StaticCompiler
+```
+
+

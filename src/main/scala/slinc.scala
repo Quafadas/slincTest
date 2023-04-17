@@ -19,12 +19,12 @@ trait JuliaLib derives FSet:
   def jl_eval_string(code : Ptr[CChar]):Unit
   //def increment32(num: CInt): CInt
   
-@NeedsFile("""C:\temp\MyLibCompiled\bin\libinc.dll""")  
-trait SuperJLib derives FSet:
-  def increment32(num: CInt): CInt
+@NeedsResource("""libmul""")  
+trait myJlib derives FSet:
+  def mul_inplace(c: Ptr[List[Int]], a: Ptr[List[Int]], b: Ptr[List[Int]]): CInt
 
 val juliaLib = FSet.instance[JuliaLib]
-val superJ = FSet.instance[SuperJLib]
+val superJ = FSet.instance[myJlib]
 
 @main def calc = 
   val a = myLib.div(5,2)
@@ -36,16 +36,22 @@ val superJ = FSet.instance[SuperJLib]
   //
 
   // the above works, but now we would want to test Julia. 
-  juliaLib.jl_init()
+  //juliaLib.jl_init()
   
+  //Scope.confined {
+    //println("Code supplied to Julia directly")    
+    //val t = Ptr.copy("print(sqrt(2.0))")
+//    juliaLib.jl_eval_string(t);
+  //}
+  
+  //println("\n Now let's call a pre-compiled library")
+  //println(superJ.mul_inplace(1))
+  //juliaLib.jl_atexit_hook(0)
+
   Scope.confined {
-    println("Code supplied to Julia directly")    
-    val t = Ptr.copy("print(sqrt(2.0))")
-    juliaLib.jl_eval_string(t);
+    val a : Ptr[List[CInt]] = ???
+    val b : Ptr[List[CInt]] = ???
+    val c : Ptr[List[CInt]] = ???
   }
-  
-  println("\n Now let's call a pre-compiled library")
-  println(superJ.increment32(1))
-  juliaLib.jl_atexit_hook(0)
 
 
