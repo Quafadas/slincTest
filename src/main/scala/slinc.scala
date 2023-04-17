@@ -25,13 +25,19 @@ val myLib = FSet.instance[MyLib]
 @NeedsFile("""/workspaces/slincTest/myJlib/libmul.so""")  
 trait myJlib derives FSet:
   // def init(): Unit
-  def julia_mul_inplace(c: MalloccMatrix, a: MalloccMatrix, b: MalloccMatrix): Unit
+  def julia_mul_inplace(c: MalloccMatrix1, a: MalloccMatrix1, b: MalloccMatrix1): Unit
 end myJlib
 
 // val juliaLib = FSet.instance[JuliaLib]
 val superJ = FSet.instance[myJlib]
 
-case class MalloccMatrix(
+// case class MalloccMatrix(
+//   pointer: Ptr[Double],
+//   length: CFloat,
+//   size : (CFloat, CFloat)
+// ) derives Struct
+
+case class MalloccMatrix1(
   pointer: Ptr[Double],
   length: CFloat,
   s1 : CFloat,
@@ -44,24 +50,6 @@ case class MalloccMatrix(
   println(myLib.rand())
   println(myLib.rand())
 
-  //val format = Ptr.copy("%i hello: %s %i")
-  //
-
-  // the above works, but now we would want to test Julia. 
-  //juliaLib.jl_init()
-  
-  //Scope.confined {
-    //println("Code supplied to Julia directly")    
-    //val t = Ptr.copy("print(sqrt(2.0))")
-//    juliaLib.jl_eval_string(t);
-  //}
-  
-  //println("\n Now let's call a pre-compiled library")
-  //println(superJ.mul_inplace(1))
-  //juliaLib.jl_atexit_hook(0)
-
-
-
   Scope.confined {
     val size : Long = 1
     
@@ -69,9 +57,11 @@ case class MalloccMatrix(
     val b : Ptr[Double] = Ptr.copy[Double](1.0)
     val c : Ptr[Double] = Ptr.copy[Double](0.0)
 
-    val ap = MalloccMatrix(a, 1,1,1 )
-    val bp = MalloccMatrix(b, 1,1,1 )
-    val cp = MalloccMatrix(c, 1,1,1 )
+    //val as = Ptr.copy[(CFloat, CFloat)]((1,1))
+
+    val ap = MalloccMatrix1(a, 1,1,1)
+    val bp = MalloccMatrix1(b, 1,1,1)
+    val cp = MalloccMatrix1(c, 1,1,1)
 
     println("calling native julia function")
     superJ.julia_mul_inplace(cp, ap, bp)
